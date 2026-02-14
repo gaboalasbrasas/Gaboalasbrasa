@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabo a las Brasas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="overlay">
+        <h1>Gabo a las Brasas</h1>
+        <p>No es prepizza. Es fuego trabajado.</p>
+        <a href="https://wa.me/543544691990" class="boton">Hacer Pedido</a>
+    </div>
+</header>
+
+<section class="historia">
+    <h2>Fuego que viene de adentro</h2>
+    <img src="imagenes/trabajando.jpg" class="foto-historia">
+    <p>
+        Esto no empezó como negocio. Empezó como necesidad.
+        De hacer algo propio. De volver al fuego.
+        Cada masa se trabaja a mano. Cada cocción tiene tiempo.
+        No hacemos volumen. Hacemos brasas.
+    </p>
+</section>
+
+<section class="galeria">
+    <h2>El Proceso</h2>
+    <div class="imagenes">
+        <img src="imagenes/pizza1.jpg">
+        <img src="imagenes/pizza2.jpg">
+        <img src="imagenes/masa.jpg">
+        <img src="imagenes/fuego.jpg">
+        <img src="imagenes/parrilla.jpg">
+    </div>
+</section>
+
+<section class="contador-section">
+    <h2>Pedidos realizados</h2>
+    <div id="contador">247</div>
+</section>
+
+<section class="reseñas">
+    <h2>Lo que dicen</h2>
+    <div class="review">“Las mejores prepizzas que probé.” – Martín</div>
+    <div class="review">“Se nota el fuego real.” – Lucía</div>
+    <div class="review">“No vuelvo a las comunes.” – Diego</div>
+</section>
+
+<div id="notificacion" class="notificacion"></div>
+
+<footer>
+    <p>Pedidos al 3544 691990</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111;
+    color:white;
+    text-align:center;
+}
+
+header{
+    height:100vh;
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url('imagenes/hero.jpg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.overlay h1{
+    font-size:3em;
+}
+
+.boton{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#ff4500;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+section{
+    padding:60px 20px;
+}
+
+.imagenes{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+
+.imagenes img{
+    width:300px;
+    border-radius:8px;
+}
+
+#contador{
+    font-size:3em;
+    color:#ff4500;
+}
+
+.review{
+    margin:15px 0;
+    font-style:italic;
+}
+
+footer{
+    padding:30px;
+    background:#000;
+}
+
+.notificacion{
+    position:fixed;
+    bottom:90px;
+    left:20px;
+    background:#1a1a1a;
+    padding:15px 20px;
+    border-radius:8px;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    font-size:0.9em;
+    opacity:0;
+    transform:translateY(20px);
+    transition:all 0.5s ease;
+}
+
+.notificacion.activa{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.foto-historia{
+    width:100%;
+    max-width:500px;
+    margin:20px auto;
+    display:block;
+    border-radius:10px;
+let contador = 247;
+const contadorElemento = document.getElementById("contador");
+
+setInterval(()=>{
+    contador++;
+    contadorElemento.textContent = contador;
+},60000);
+
+const mensajesBase = [
+    "Martín pidió 2 packs",
+    "Lucía pidió Pack x2",
+    "Nuevo pedido de prepizzas",
+    "Diego pidió 3 packs",
+    "Pedido confirmado"
+];
+
+function tiempoAleatorio(){
+    return Math.floor(Math.random()*7)+1;
+}
+
+function mostrarNotificacion(){
+    const noti = document.getElementById("notificacion");
+    const mensaje = mensajesBase[Math.floor(Math.random()*mensajesBase.length)];
+    const minutos = tiempoAleatorio();
+    noti.textContent = "🔥 " + mensaje + " hace " + minutos + " minuto" + (minutos>1?"s":"");
+    noti.classList.add("activa");
+
+    setTimeout(()=>{
+        noti.classList.remove("activa");
+    },5000);
+}
+
+setTimeout(mostrarNotificacion,12000);
+setInterval(mostrarNotificacion,40000);
