@@ -1,0 +1,34 @@
+let contador = 247;
+const contadorElemento = document.getElementById("contador");
+
+setInterval(()=>{
+    contador++;
+    contadorElemento.textContent = contador;
+},60000);
+
+const mensajesBase = [
+    "Martín pidió 2 packs",
+    "Lucía pidió Pack x2",
+    "Nuevo pedido de prepizzas",
+    "Diego pidió 3 packs",
+    "Pedido confirmado"
+];
+
+function tiempoAleatorio(){
+    return Math.floor(Math.random()*7)+1;
+}
+
+function mostrarNotificacion(){
+    const noti = document.getElementById("notificacion");
+    const mensaje = mensajesBase[Math.floor(Math.random()*mensajesBase.length)];
+    const minutos = tiempoAleatorio();
+    noti.textContent = "🔥 " + mensaje + " hace " + minutos + " minuto" + (minutos>1?"s":"");
+    noti.classList.add("activa");
+
+    setTimeout(()=>{
+        noti.classList.remove("activa");
+    },5000);
+}
+
+setTimeout(mostrarNotificacion,12000);
+setInterval(mostrarNotificacion,40000);
