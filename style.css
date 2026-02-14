@@ -1,0 +1,87 @@
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111;
+    color:white;
+    text-align:center;
+}
+
+header{
+    height:100vh;
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url('imagenes/hero.jpg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.overlay h1{
+    font-size:3em;
+}
+
+.boton{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#ff4500;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+section{
+    padding:60px 20px;
+}
+
+.imagenes{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+
+.imagenes img{
+    width:300px;
+    border-radius:8px;
+}
+
+#contador{
+    font-size:3em;
+    color:#ff4500;
+}
+
+.review{
+    margin:15px 0;
+    font-style:italic;
+}
+
+footer{
+    padding:30px;
+    background:#000;
+}
+
+.notificacion{
+    position:fixed;
+    bottom:90px;
+    left:20px;
+    background:#1a1a1a;
+    padding:15px 20px;
+    border-radius:8px;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    font-size:0.9em;
+    opacity:0;
+    transform:translateY(20px);
+    transition:all 0.5s ease;
+}
+
+.notificacion.activa{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.foto-historia{
+    width:100%;
+    max-width:500px;
+    margin:20px auto;
+    display:block;
+    border-radius:10px;
